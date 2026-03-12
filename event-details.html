@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sự Kiện - Thiệp Cưới To Nynh & Minh Tâm</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Event Details Page Specific Styles */
+        .event-details-page {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+            padding: 100px 0 80px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--white);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-detail-hero {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-detail-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-orientation: from-image;
+        }
+
+        .event-detail-content {
+            padding: 50px 60px;
+        }
+
+        .event-detail-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .event-detail-title {
+            font-family: var(--font-primary);
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0 0 15px 0;
+        }
+
+        .event-detail-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .event-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .event-info-box {
+            background: var(--light-color);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .event-info-box h4 {
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin: 0 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .event-info-box p {
+            margin: 5px 0;
+            color: var(--dark-color);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .event-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            padding-top: 30px;
+            border-top: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .event-actions .btn {
+            padding: 16px 35px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .event-actions .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .event-actions .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .event-actions .btn-secondary {
+            background: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .event-actions .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .event-details-page {
+                padding: 80px 0 60px;
+            }
+
+            .event-detail-hero {
+                height: 300px;
+            }
+
+            .event-detail-content {
+                padding: 35px 30px;
+            }
+
+            .event-detail-title {
+                font-size: 2.2rem;
+            }
+
+            .event-info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .event-actions {
+                flex-direction: column;
+            }
+
+            .event-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-detail-content {
+                padding: 25px 20px;
+            }
+
+            .event-detail-title {
+                font-size: 1.8rem;
+            }
+
+            .event-detail-subtitle {
+                font-size: 1rem;
+            }
+
+            .event-info-box {
+                padding: 20px;
+            }
+        }
+
+        /* Event Gallery Section */
+        .event-gallery-section {
+            margin-top: 60px;
+            padding-top: 40px;
+        }
+
+        .event-gallery-section .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .event-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .event-gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            aspect-ratio: 1;
+            background: #f0f0f0;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .event-gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-orientation: from-image;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .event-gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            image-orientation: from-image;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+            line-height: 1;
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .event-gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .lightbox-prev,
+            .lightbox-next {
+                font-size: 30px;
+                padding: 10px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">Q <span class="heart">❤</span> B</div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <a href="index.html#couple">Cặp đôi</a>
+                <a href="index.html#event">Sự kiện</a>
+                <a href="index.html#gallery">Album hình</a>
+                <a href="index.html#rsvp">Sổ lưu bút</a>
+                <a href="index.html#map">Mừng cưới</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="event-details-page">
+        <div class="container">
+            <a href="index.html#event" class="back-button">
+                ← Quay lại danh sách sự kiện
+            </a>
+
+            <div class="event-detail-container" id="eventDetailContainer">
+                <!-- Content will be loaded dynamically via JavaScript -->
+                <div class="event-detail-hero">
+                    <img id="eventImage" src="" alt="Event Image">
+                </div>
+                <div class="event-detail-content">
+                    <div class="event-detail-header">
+                        <h1 class="event-detail-title" id="eventTitle"></h1>
+                        <p class="event-detail-subtitle" id="eventSubtitle"></p>
+                    </div>
+
+                    <div class="event-info-grid">
+                        <div class="event-info-box">
+                            <h4>📍 Địa Điểm</h4>
+                            <p id="eventLocation"></p>
+                        </div>
+                        <div class="event-info-box">
+                            <h4>🕐 Thời Gian</h4>
+                            <p id="eventTime"></p>
+                            <p id="eventLunar" style="font-size: 0.9rem; color: #888; font-style: italic;"></p>
+                        </div>
+                    </div>
+
+                    <!-- <div class="event-description">
+                        <h3>Về Sự Kiện</h3>
+                        <div id="eventDescription"></div>
+                    </div> -->
+
+                    <div class="event-actions">
+                        <button class="btn btn-primary" id="btnAddToCalendar">
+                            📅 Thêm vào lịch
+                        </button>
+                        <a href="#" class="btn btn-secondary" id="btnViewMap" target="_blank">
+                            🗺️ Xem bản đồ
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Gallery Section -->
+            <div class="event-gallery-section" id="eventGallerySection" style="display: none;">
+                <h2 class="section-title">Album Ảnh Sự Kiện</h2>
+                <div class="event-gallery-grid" id="eventGalleryGrid">
+                    <!-- Gallery images will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-prev" onclick="changeLightboxImage(-1)">‹</button>
+        <img id="lightboxImg" src="" alt="Lightbox Image">
+        <button class="lightbox-next" onclick="changeLightboxImage(1)">›</button>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="thank-you">Cảm ơn bạn đã ghé thăm!</p>
+            <div class="couple-signature">
+                <span class="groom-signature">To Nynh</span>
+                <span class="signature-ampersand">&</span>
+                <span class="bride-signature">Minh Tâm</span>
+            </div>
+            <p class="footer-date">18.04.2026</p>
+        </div>
+    </footer>
+
+    <audio id="bgMusic" preload="none"></audio>
+    <button id="musicToggle" class="music-toggle">
+        <span class="music-icon">🎵</span>
+    </button>
+    <script src="music.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Event data
+        const eventData = {
+            'dinh-hon': {
+                title: 'Lễ Đính Hôn',
+                subtitle: 'Đám Hỏi',
+                image: 'event/DSC_1273.jpg',
+                location: 'Tư gia nhà gái',
+                time: '10:00 - Ngày 30/11/2025',
+                lunar: 'Nhằm ngày 11/10 âm lịch',
+                mapUrl: 'https://maps.app.goo.gl/eR8dES7xzNwmRQtZ6',
+                description: `
+                    <p>Lễ định hôn là bước đầu tiên trong hành trình trăm năm hạnh phúc của chúng tôi.
+                    Đây là dịp để hai gia đình gặp gỡ, trao đổi và chính thức gắn kết hai họ thành một.</p>
+                    <p>Trong buổi lễ, gia đình nhà trai sẽ đến nhà gái với những lễ vật truyền thống
+                    để cầu hôn theo phong tục Việt Nam. Đây là một nghi lễ trang trọng và ý nghĩa,
+                    đánh dấu sự khởi đầu của một cuộc sống mới.</p>
+                    <p>Chúng tôi rất vinh hạnh được có sự hiện diện của quý khách trong ngày quan trọng này.</p>
+                `,
+                galleryImages: [
+                    'event1/DSC_0662.jpg',
+                    'event1/DSC_1273.jpg',
+                    'event1/DSC_1283.jpg',
+                    'event1/DSC_1287.jpg',
+                    'event1/DSC_1303.jpg',
+                    'event1/DSC_1595.jpg'
+                ]
+            },
+            'vu-quy': {
+                title: 'Lễ Vu Quy',
+                subtitle: 'Ngày Về Nhà Chồng',
+                image: 'event/DSC_0307.JPG',
+                location: 'Tư gia nhà gái',
+                time: '06:00 - Ngày 17/01/2026',
+                lunar: 'Nhằm ngày 29/11 âm lịch',
+                mapUrl: 'https://maps.app.goo.gl/eR8dES7xzNwmRQtZ6',
+                description: `
+                    <p>Lễ Vu Quy là một trong những nghi lễ quan trọng và xúc động nhất trong đám cưới truyền thống Việt Nam.
+                    Đây là lúc cô dâu chính thức rời bỏ tổ ấm để bắt đầu cuộc sống mới bên gia đình nhà chồng.</p>
+                    <p>Buổi sáng sớm, gia đình nhà trai sẽ đến rước dâu về dinh với đoàn xe hoa rực rỡ.
+                    Trước khi lên xe hoa, cô dâu sẽ cúi đầu tạ ơn cha mẹ, ông bà đã nuôi nấng, chăm sóc suốt những năm tháng qua.</p>
+                    <p>Đây là khoảnh khắc đầy cảm xúc nhất, khi người con gái bước sang một trang mới của cuộc đời.</p>
+                `
+            },
+            'thanh-hon': {
+                title: 'Lễ Thành Hôn',
+                subtitle: 'Rước Dâu & Lễ Gia Tiên',
+                image: 'event/DSC_0388.JPG',
+                location: 'Tư gia nhà trai',
+                time: '10:00 - Ngày 24/01/2026',
+                lunar: 'Nhằm ngày 06/12 âm lịch',
+                mapUrl: 'https://maps.app.goo.gl/FK2oG7ezyU3N83MP6',
+                description: `
+                    <p>Lễ Thành Hôn tại nhà trai là nghi lễ chính thức đánh dấu sự kết hợp của hai gia đình.
+                    Sau khi rước dâu về, cô dâu chú rể sẽ cùng nhau làm lễ gia tiên, báo cáo với tổ tiên về việc thành hôn.</p>
+                    <p>Trong nghi lễ này, cô dâu sẽ được chính thức giới thiệu với họ hàng nhà chồng,
+                    đồng thời thực hiện các nghi thức truyền thống như lạy ông bà, cha mẹ hai bên.</p>
+                    <p>Đây là thời khắc thiêng liêng nhất, khi hai trái tim chính thức gắn kết thành một
+                    trước sự chứng giám của tổ tiên và gia đình hai bên.</p>
+                `
+            },
+            'tiec-cuoi': {
+                title: 'Tiệc Mừng Thành Hôn',
+                subtitle: 'Đãi Tiệc Tại Nhà Hàng',
+                image: 'event/DSC_0541.JPG',
+                location: 'Nhà Hàng Tiệc Cưới Kim Cương - Sảnh Cát Tường',
+                time: '11:00 - Ngày 25/01/2026',
+                lunar: 'Nhằm ngày 07/12 âm lịch',
+                mapUrl: 'https://maps.app.goo.gl/ADh5RekNcqBQPMYu6',
+                description: `
+                    <p>Tiệc cưới là dịp để chúng tôi chia sẻ niềm hạnh phúc với tất cả người thân,
+                    bạn bè và những người đã đồng hành cùng chúng tôi trong suốt hành trình vừa qua.</p>
+                    <p>Buổi tiệc sẽ được tổ chức tại Nhà Hàng Kim Cương - một trong những địa điểm
+                    sang trọng và đẳng cấp nhất. Chúng tôi đã chuẩn bị rất kỹ lưỡng để mang đến
+                    cho quý khách một bữa tiệc ấm cúng, vui vẻ và đáng nhớ.</p>
+                    <p>Sự hiện diện của quý khách chính là món quà vô giá nhất mà chúng tôi mong muốn
+                    nhận được trong ngày trọng đại này. Rất mong được đón tiếp quý khách!</p>
+                    <p><strong>Dress code:</strong> Smart Casual - Trang phục lịch sự, thoải mái</p>
+                `
+            }
+        };
+
+        // Get event ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventId = urlParams.get('id');
+
+        // Load event details
+        if (eventId && eventData[eventId]) {
+            const event = eventData[eventId];
+
+            document.getElementById('eventImage').src = event.image;
+            document.getElementById('eventTitle').textContent = event.title;
+            document.getElementById('eventSubtitle').textContent = event.subtitle;
+            document.getElementById('eventLocation').textContent = event.location;
+            document.getElementById('eventTime').textContent = event.time;
+            document.getElementById('eventLunar').textContent = event.lunar;
+            document.getElementById('btnViewMap').href = event.mapUrl;
+
+            // Add to calendar button
+            document.getElementById('btnAddToCalendar').addEventListener('click', function () {
+                addToCalendar(eventId);
+            });
+
+            // Update page title
+            document.title = `${event.title} - Thiệp Cưới To Nynh & Minh Tâm`;
+
+            // Load gallery if available
+            if (event.galleryImages && event.galleryImages.length > 0) {
+                const gallerySection = document.getElementById('eventGallerySection');
+                const galleryGrid = document.getElementById('eventGalleryGrid');
+
+                gallerySection.style.display = 'block';
+
+                event.galleryImages.forEach((imageSrc, index) => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'event-gallery-item';
+                    galleryItem.setAttribute('data-index', index);
+
+                    const img = document.createElement('img');
+                    img.src = imageSrc;
+                    img.alt = `${event.title} - Ảnh ${index + 1}`;
+
+                    galleryItem.appendChild(img);
+                    galleryGrid.appendChild(galleryItem);
+
+                    // Add click event to open lightbox
+                    galleryItem.addEventListener('click', () => {
+                        currentImageIndex = index;
+                        currentGalleryImages = event.galleryImages;
+                        openLightbox(imageSrc);
+                    });
+                });
+            }
+        } else {
+            // Redirect to home if event not found
+            window.location.href = 'index.html#event';
+        }
+
+        // Lightbox functionality
+        let currentImageIndex = 0;
+        let currentGalleryImages = [];
+
+        function openLightbox(src) {
+            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightboxImg').src = src;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeLightboxImage(direction) {
+            if (currentGalleryImages.length === 0) return;
+
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = currentGalleryImages.length - 1;
+            } else if (currentImageIndex >= currentGalleryImages.length) {
+                currentImageIndex = 0;
+            }
+            document.getElementById('lightboxImg').src = currentGalleryImages[currentImageIndex];
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                changeLightboxImage(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeLightboxImage(1);
+            }
+        });
+
+        // Close lightbox when clicking outside the image
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+        // Falling Hearts Animation
+        function createFallingHeart() {
+            const container = document.getElementById('fallingHeartsContainer');
+            if (!container) return;
+
+            const heart = document.createElement('div');
+            heart.className = 'falling-heart';
+            heart.innerHTML = '♥';
+
+            const sizes = ['small', 'medium', 'large'];
+            const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+            heart.classList.add(randomSize);
+
+            const colors = ['pink', 'gold', 'rose', 'light-pink'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            heart.classList.add(randomColor);
+
+            const randomLeft = Math.random() * 100;
+            heart.style.left = randomLeft + '%';
+
+            const randomDrift = (Math.random() - 0.5) * 100;
+            heart.style.setProperty('--drift', randomDrift + 'px');
+
+            const randomDuration = 8 + Math.random() * 6;
+            heart.style.animationDuration = randomDuration + 's';
+
+            const randomDelay = Math.random() * 3;
+            heart.style.animationDelay = randomDelay + 's';
+
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, (randomDuration + randomDelay) * 1000);
+        }
+
+        function startFallingHearts() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => createFallingHeart(), i * 1000);
+            }
+
+            setInterval(() => {
+                createFallingHeart();
+            }, 2000 + Math.random() * 2000);
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(startFallingHearts, 1000);
+        });
+    </script>
+
+    <!-- Falling Hearts Container -->
+    <div class="falling-hearts-container" id="fallingHeartsContainer"></div>
+</body>
+
+</html>
